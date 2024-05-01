@@ -9,11 +9,16 @@ pub fn test_for_drive() -> std::result::Result<Vec<String>, std::io::Error> {
     Ok(test_output_vec)
 }
 
-pub fn load_configs() {
-    let current_dir: String = std::env::current_exe()
-        .unwrap()
-        .into_os_string()
-        .into_string()
-        .unwrap();
-    println!("{current_dir}")
+pub fn load_configs() -> Vec<String> {
+    let mut combiner = std::path::PathBuf::new();
+    let get_current_dir = std::env::current_exe().unwrap().to_path_buf();
+    let mut config_lines: Vec<String> = Vec::new();
+
+    combiner.push(get_current_dir);
+    combiner.push(std::path::PathBuf::from("config.txt"));
+
+    for i in std::fs::read_to_string(combiner).unwrap().lines() {
+        config_lines.push(i.to_string());
+    }
+    config_lines
 }
