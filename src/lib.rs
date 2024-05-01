@@ -15,6 +15,7 @@ pub fn load_configs() -> Vec<String> {
     let mut config_lines: Vec<String> = Vec::new();
 
     combiner.push(get_current_dir);
+    combiner.pop();
     combiner.push(std::path::PathBuf::from("config.txt"));
 
     for i in std::fs::read_to_string(combiner).unwrap().lines() {
