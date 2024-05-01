@@ -8,3 +8,12 @@ pub fn test_for_drive() -> std::result::Result<Vec<String>, std::io::Error> {
 
     Ok(test_output_vec)
 }
+
+pub fn load_configs() {
+    let current_dir: String = std::env::current_exe()
+        .unwrap()
+        .into_os_string()
+        .into_string()
+        .unwrap();
+    println!("{current_dir}")
+}

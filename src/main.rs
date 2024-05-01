@@ -1,4 +1,6 @@
 fn main() {
+    usb_backer::load_configs();
+
     if let Err(e) = usb_backer::test_for_drive() {
         panic!("Couldn't find drive: {e}")
     } else {
