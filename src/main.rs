@@ -1,11 +1,5 @@
 fn main() {
-    usb_backer::load_configs();
-
-    if let Err(e) = usb_backer::test_for_drive() {
-        panic!("Couldn't find drive: {e}")
-    } else {
-        let output_vec = usb_backer::test_for_drive().unwrap();
+    if let Ok(config_lines) = usb_backer::load_configs(String::from("config.txt")) {
+        println!("{}", config_lines[0].clone());
     }
-
-    let config_lines = usb_backer::load_configs();
 }
