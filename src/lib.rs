@@ -14,6 +14,9 @@ pub fn load_configs(config_string: String) -> std::result::Result<Vec<String>, s
 }
 pub fn copy_over(dir_from: String, dir_to: String) -> std::result::Result<(), std::io::Error> {
     let mut com = std::process::Command::new("cp");
+
+    println!("Starting copy, please be patient, as this might take a while depending on the amount of files you are trying to copy");
+
     com.current_dir("/");
     com.arg("-r")
         .arg(&dir_from)
@@ -21,6 +24,7 @@ pub fn copy_over(dir_from: String, dir_to: String) -> std::result::Result<(), st
         .output()
         .expect("Fail!");
 
-    println!("{} {}", dir_from, dir_to);
+    println!("Done copying.");
+
     Ok(())
 }
