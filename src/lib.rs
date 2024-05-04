@@ -24,19 +24,13 @@ pub fn load_configs(
     Ok((config_lines, file_transfer))
 }
 pub fn copy_over(dir_from: String, dir_to: String) -> std::result::Result<(), std::io::Error> {
-    if cfg!(unix) {
-        let mut com = std::process::Command::new("cp");
+    let mut com = std::process::Command::new("cp");
 
-        println!("Starting copy, please be patient, as this might take a while depending on the amount of files you are trying to copy");
-
-        com.current_dir("/");
-        com.arg("-r")
-            .arg(&dir_from)
-            .arg(&dir_to)
-            .output()
-            .expect("Fail!");
-
-        println!("Done copying.");
-    }
+    com.current_dir("/");
+    com.arg("-r")
+        .arg(&dir_from)
+        .arg(&dir_to)
+        .output()
+        .expect("Fail!");
     Ok(())
 }
